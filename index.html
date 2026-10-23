@@ -1,0 +1,566 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>html{color-scheme:light}body{margin:0}[hidden]{display:none!important}</style>
+<script>try { if (localStorage.getItem("krnayo-style") === "corporate") document.documentElement.setAttribute("data-style", "corporate"); } catch (e) {}</script>
+<title>Karen's portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Ruslan+Display&display=swap" rel="stylesheet">
+<style>
+/* Malachite green and embroidery red on whitewashed linen. The page is one cross-stitched towel end. */
+:root {
+  --bg: #F1F2EE;
+  --fg: #13241A;
+  --muted: #5A6B5F;
+  --line: rgba(19, 36, 26, 0.25);
+  --accent: #C2362B;
+  --blue: #1F6B43;
+  --cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M3 3 L3 22 L8 17.2 L11.8 25.5 L15.6 23.8 L11.9 15.6 L18.5 15.6 Z' fill='%23C2362B' stroke='%23F1F2EE' stroke-width='1.5' stroke-linejoin='round'/%3E%3Cpath d='M6.6 8.6 L8.8 10.9 L6.6 13.2 L4.4 10.9 Z' fill='%23F1F2EE'/%3E%3C/svg%3E") 3 3, auto;
+  --cursor-hand: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M3 3 L3 22 L8 17.2 L11.8 25.5 L15.6 23.8 L11.9 15.6 L18.5 15.6 Z' fill='%231F6B43' stroke='%23F1F2EE' stroke-width='1.5' stroke-linejoin='round'/%3E%3Cpath d='M6.6 8.6 L8.8 10.9 L6.6 13.2 L4.4 10.9 Z' fill='%23F1F2EE'/%3E%3C/svg%3E") 3 3, pointer;
+  --font-text: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --font-display: "Ruslan Display", Georgia, serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0D1A12;
+    --fg: #E6EFE4;
+    --muted: #8DA894;
+    --line: rgba(230, 239, 228, 0.26);
+    --accent: #F0594C;
+    --blue: #8CD6A0;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0D1A12;
+  --fg: #E6EFE4;
+  --muted: #8DA894;
+  --line: rgba(230, 239, 228, 0.26);
+  --accent: #F0594C;
+  --blue: #8CD6A0;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { cursor: var(--cursor); }
+a { cursor: var(--cursor-hand); }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-text);
+  font-size: 0.88rem;
+  line-height: 1.75;
+  min-height: 100svh;
+  padding-block: 0 1.5rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1240px; margin-inline: auto; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+html { scroll-behavior: smooth; }
+
+/* Name on the left, theme switch on the right. No menu. */
+.top { display: flex; justify-content: space-between; align-items: center; padding-block: 1.1rem; }
+.who { color: var(--muted); text-decoration: none; }
+
+/* The theme switch is a stitched diamond, half filled like the sun and moon on a towel */
+.theme-btn { width: 1.6rem; height: 1.6rem; padding: 0; background: none; border: 0; cursor: var(--cursor-hand); }
+.theme-btn span { display: block; width: 100%; height: 100%; border: 2px solid var(--blue); transform: rotate(45deg) scale(0.72); background: linear-gradient(90deg, var(--accent) 50%, transparent 50%); transition: transform 0.3s; }
+.theme-btn:hover span, .theme-btn:focus-visible span { transform: rotate(225deg) scale(0.72); }
+
+/* Hero: an embroidered towel end */
+.hero { position: relative; height: clamp(200px, 34svh, 340px); border-block: 1px solid var(--line); overflow: hidden; }
+.hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: pan-y; }
+.visit { position: fixed; right: max(16px, env(safe-area-inset-right, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); z-index: 10; width: min(15rem, calc(100vw - 32px)); display: grid; justify-items: start; gap: 0.6rem; padding: 0.9rem 1.1rem 1rem; background-color: var(--bg);
+  /* a running stitch circling the box, drawn as four dashed edges */
+  background-image: linear-gradient(90deg, var(--accent) 50%, transparent 50%), linear-gradient(90deg, var(--accent) 50%, transparent 50%), linear-gradient(0deg, var(--accent) 50%, transparent 50%), linear-gradient(0deg, var(--accent) 50%, transparent 50%);
+  background-size: 14px 2px, 14px 2px, 2px 14px, 2px 14px;
+  background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+  background-position: 0 0, 0 100%, 0 0, 100% 0;
+  animation: rise 0.7s ease-out both, run 1.2s linear infinite; }
+.visit:has(.stitch-btn:disabled) { animation: none; background-image: none; border: 1px solid var(--line); }
+.visit .spin { flex: none; width: 1.3rem; height: 1.3rem; fill: none; stroke: var(--accent); stroke-width: 1.4; animation: turn 8s linear infinite; }
+.visit .spin circle { fill: var(--accent); stroke: none; }
+@keyframes turn { to { transform: rotate(360deg); } }
+.visit p { margin: 0; display: flex; align-items: center; gap: 0.6rem; font-size: 0.8rem; line-height: 1.45; }
+@keyframes run { to { background-position: 14px 0, -14px 100%, 0 14px, 100% -14px; } }
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } }
+/* A needle sews a running stitch across the box, stitch by stitch, then starts over */
+.thread { position: relative; display: block; width: 100%; height: 10px; }
+.thread::before { content: ""; position: absolute; left: 0; top: 4px; width: 100%; height: 2px; background: repeating-linear-gradient(90deg, var(--accent) 0 8px, transparent 8px 14px); clip-path: inset(0 100% 0 0); animation: sew 4.5s steps(14, end) infinite; }
+.thread::after { content: ""; position: absolute; left: 0; top: 1px; width: 0; height: 0; border-left: 9px solid var(--fg); border-top: 4px solid transparent; border-bottom: 4px solid transparent; animation: needle 4.5s steps(14, end) infinite, jab 0.32s ease-in-out infinite alternate; }
+@keyframes sew { 0% { clip-path: inset(0 100% 0 0); } 70%, 100% { clip-path: inset(0 0 0 0); } }
+@keyframes needle { 0% { left: 0; opacity: 1; } 70% { left: calc(100% - 9px); opacity: 1; } 78%, 100% { left: calc(100% - 9px); opacity: 0; } }
+@keyframes jab { from { margin-top: -2px; } to { margin-top: 2px; } }.stitch-btn { padding: 0; background: none; border: 0; color: var(--accent); font-size: 0.82rem; cursor: var(--cursor-hand); }
+.stitch-btn::before { content: "["; }
+.stitch-btn::after { content: "]"; }
+.stitch-btn:hover:not(:disabled), .stitch-btn:focus-visible { color: var(--fg); }
+.stitch-btn:disabled { color: var(--muted); cursor: var(--cursor); }
+
+/* Status line under the hero; the star links to the current work section */
+.now { padding-block: 1.4rem 0.8rem; }
+.subtitle { margin: 0; display: flex; align-items: center; gap: 0.7rem; font-size: 0.85rem; line-height: 1.4; }
+.icon-link { display: block; flex: none; line-height: 0; }
+.icon-link:hover .icon, .icon-link:focus-visible .icon { transform: rotate(45deg); }
+.subtitle .icon { display: block; width: 1.4rem; height: 1.4rem; fill: none; stroke: var(--accent); stroke-width: 1.4; transition: transform 0.3s; }
+.when-now { color: var(--accent); font-size: 0.78rem; }
+.caret { color: var(--accent); animation: blink 1.1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.subtitle .icon circle { fill: var(--accent); stroke: none; }
+
+/* Sections */
+.panel { padding-top: 1rem; border-top: 1px dashed var(--line); scroll-margin-top: 1rem; }
+.panel h2 { margin: 0 0 0.9rem; font-family: var(--font-display); font-weight: 400; font-size: 1.2rem; line-height: 1.3; color: var(--blue); }
+.panel p { margin: 0 0 0.7rem; font-size: 0.88rem; line-height: 1.7; }
+.panel p:last-child { margin-bottom: 0; }
+
+.wide { margin-top: 0.6rem; }
+.intro { padding-block: 1.4rem 0.4rem; border-top: 0; }
+.intro p { max-width: 64ch; margin: 0; font-size: 0.95rem; line-height: 1.75; }
+.acc { border-top: 1px dashed var(--line); scroll-margin-top: 1rem; }
+.intro + .acc { margin-top: 2.4rem; }
+.acc:last-of-type { border-bottom: 1px dashed var(--line); }
+.acc summary { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding-block: 0.9rem; cursor: var(--cursor-hand); }
+.acc summary::-webkit-details-marker { display: none; }
+.acc summary::after { content: ""; flex: none; width: 0.55rem; height: 0.55rem; border: 1.5px solid var(--accent); transform: rotate(45deg); transition: background 0.2s; }
+.acc summary:hover::after, .acc[open] summary::after { background: var(--accent); }
+.acc summary:hover h2 { color: var(--accent); }
+.acc h2 { margin: 0; font-family: var(--font-display); font-weight: 400; font-size: 1.2rem; line-height: 1.3; color: var(--blue); }
+.acc-body { padding-bottom: 1.4rem; }
+.timeline { list-style: none; margin: 0; padding: 0 0 0 1.4rem; border-left: 1px dashed var(--line); }
+.timeline li { position: relative; display: grid; grid-template-columns: 6rem minmax(0, 1fr); gap: 0 1rem; padding-bottom: 1.2rem; }
+.timeline li:last-child { padding-bottom: 0; }
+.timeline li::before { content: ""; position: absolute; left: calc(-1.4rem - 4px); top: 0.55em; width: 7px; height: 7px; background: var(--bg); border: 1.5px solid var(--blue); transform: rotate(45deg); }
+.timeline .current::before { background: var(--accent); border-color: var(--accent); }
+.timeline .when { color: var(--muted); font-size: 0.78rem; text-transform: lowercase; }
+.timeline .current .when { color: var(--accent); }
+.timeline b { font-weight: 500; }
+.timeline .what { font-size: 0.85rem; line-height: 1.65; }
+.timeline .what { color: var(--muted); }
+.timeline .current { padding-bottom: 1.4rem; }
+.timeline .current .when { font-weight: 500; }
+.role-link { text-decoration: underline dotted var(--accent); text-underline-offset: 0.25em; }
+.timeline .current .what b::after { content: "_"; margin-left: 0.15em; color: var(--accent); animation: livedot 1.1s steps(1) infinite; }
+@keyframes livedot { 50% { opacity: 0; } }
+.timeline .current .what b { font-size: 1rem; }
+.timeline .current .what { color: var(--fg); }
+@media (max-width: 600px) { .timeline li { grid-template-columns: 1fr; } }
+.focus { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.8rem; max-width: 72ch; }
+.focus li { display: grid; grid-template-columns: minmax(10rem, 14rem) minmax(0, 1fr); gap: 0.2rem 1.2rem; }
+.focus b { font-weight: 500; }
+.focus span { color: var(--muted); }
+@media (max-width: 600px) { .focus li { grid-template-columns: 1fr; } }.stack-text { max-width: 72ch; margin: 0; text-align: justify; hyphens: auto; font-size: 0.88rem; line-height: 1.85; }
+a { color: inherit; text-decoration-color: var(--line); text-underline-offset: 0.2em; }
+a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
+.site-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.4rem 1.5rem; padding-block: 1rem 5rem; border-top: 1px dashed var(--line); color: var(--muted); font-style: normal; font-size: 0.8rem; }
+.site-foot p { margin: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-btn span, .subtitle .icon, .acc summary::after { transition: none; }
+  .timeline .current .what b::after { animation: none; }
+    .thread::before { animation: none; clip-path: none; }
+  .fun { animation: none; }
+  .thread::after { display: none; }
+  .visit, .visit .spin { animation: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* The word "fun" in the intro is a switch: crossing it out turns the page into a corporate design with the same layout */
+.fun { font: inherit; padding: 0; background: none; border: 0; border-bottom: 1px dotted var(--accent); color: var(--accent); cursor: var(--cursor-hand); }
+.fun { display: inline-block; animation: nudge 3.2s ease-in-out 1.5s infinite; }
+.fun[aria-pressed="true"] { animation: none; }
+@keyframes nudge { 0%, 68%, 100% { transform: none; } 76% { transform: translateY(-3px) rotate(-4deg); } 84% { transform: translateY(0) rotate(3deg); } 92% { transform: rotate(-1deg); } }.fun:hover { color: var(--fg); }
+.fun[aria-pressed="true"] { color: var(--muted); border-bottom-color: transparent; text-decoration: line-through; text-decoration-thickness: 2px; text-decoration-color: var(--accent); }
+
+html[data-style="corporate"] {
+  --bg: #FFFFFF; --fg: #0F172A; --muted: #64748B; --line: #E2E8F0; --accent: #2563EB; --blue: #0F172A;
+  --cursor: auto; --cursor-hand: pointer;
+  --font-text: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  html[data-style="corporate"]:not([data-theme="light"]) { --bg: #0B1220; --fg: #E2E8F0; --muted: #94A3B8; --line: #1E293B; --accent: #60A5FA; --blue: #F1F5F9; }
+}
+html[data-style="corporate"][data-theme="dark"] { --bg: #0B1220; --fg: #E2E8F0; --muted: #94A3B8; --line: #1E293B; --accent: #60A5FA; --blue: #F1F5F9; }
+html[data-style="corporate"] body { font-size: 0.95rem; line-height: 1.65; }
+html[data-style="corporate"] .who { font-weight: 600; color: var(--fg); letter-spacing: -0.01em; }
+html[data-style="corporate"] .theme-btn span { border-radius: 50%; border-width: 1.5px; transform: scale(0.8); }
+html[data-style="corporate"] .theme-btn:hover span, html[data-style="corporate"] .theme-btn:focus-visible span { transform: scale(0.8) rotate(180deg); }
+html[data-style="corporate"] .hero { border: 1px solid var(--line); border-radius: 12px; }
+html[data-style="corporate"] .acc { border-top: 1px solid var(--line); }
+html[data-style="corporate"] .acc h2 { font-weight: 600; font-size: 1.05rem; letter-spacing: -0.01em; color: var(--fg); }
+html[data-style="corporate"] .acc summary:hover h2 { color: var(--accent); }
+html[data-style="corporate"] .acc summary::after { width: 0.5rem; height: 0.5rem; border: 0; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); background: none; transform: rotate(45deg); transition: transform 0.2s; }
+html[data-style="corporate"] .acc summary:hover::after { background: none; border-color: var(--accent); }
+html[data-style="corporate"] .acc[open] summary::after { background: none; transform: rotate(-135deg); }
+html[data-style="corporate"] .focus { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.8rem; max-width: 72ch; }
+.focus li { display: grid; grid-template-columns: minmax(10rem, 14rem) minmax(0, 1fr); gap: 0.2rem 1.2rem; }
+.focus b { font-weight: 500; }
+.focus span { color: var(--muted); }
+@media (max-width: 600px) { .focus li { grid-template-columns: 1fr; } }.stack-text { text-align: left; hyphens: none; line-height: 1.8; }
+html[data-style="corporate"] .timeline { border-left: 1px solid var(--line); }
+html[data-style="corporate"] .timeline li::before { border-radius: 50%; transform: none; }
+html[data-style="corporate"] .timeline .when { text-transform: none; }
+html[data-style="corporate"] .timeline .current::before { box-shadow: none; }
+html[data-style="corporate"] .visit { background-image: none; animation: rise 0.7s ease-out both; border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 6px 24px rgba(15, 23, 42, 0.12); }
+html[data-style="corporate"] .visit .spin, html[data-style="corporate"] .thread { display: none; }
+html[data-style="corporate"] .stitch-btn { padding: 0.45rem 1rem; background: var(--accent); color: #fff; border-radius: 8px; font-weight: 500; }
+html[data-style="corporate"] .stitch-btn::before, html[data-style="corporate"] .stitch-btn::after { content: none; }
+html[data-style="corporate"] .stitch-btn:hover:not(:disabled), html[data-style="corporate"] .stitch-btn:focus-visible { background: var(--accent); color: #fff; filter: brightness(1.1); }
+html[data-style="corporate"] .stitch-btn:disabled { background: var(--line); color: var(--muted); filter: none; }
+html[data-style="corporate"] .site-foot { border-top: 1px solid var(--line); }
+</style>
+</head>
+<body>
+
+<div class="wrap" id="top">
+  <header class="top">
+    <a class="who" href="#top">krnayo</a>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch light or dark theme"><span></span></button>
+  </header>
+
+  <section class="hero" id="hero">
+    <canvas id="field" aria-hidden="true"></canvas>
+  </section>
+
+  <section class="panel wide intro" id="hello">
+    <p>Hi, I'm Karen, a person dedicated to creating <button type="button" class="fun" id="funBtn" aria-pressed="false" title="Cross it out">fun</button> projects about design, systems, learning, and more.</p>
+  </section>
+
+  <details class="acc" id="tools" name="acc">
+    <summary><h2>Tools</h2></summary>
+    <div class="acc-body">
+      <p class="stack-text">Laravel, PHP, Vue, React, React Native, Expo, JavaScript, SQL, MySQL, Three.js, GSAP, Claude.</p>
+    </div>
+  </details>
+
+  <!-- The learning topics below are placeholders. Replace them with what you are really focusing on. -->
+  <details class="acc" id="learning" name="acc">
+    <summary><h2>Learning</h2></summary>
+    <div class="acc-body">
+      <ul class="focus">
+        <li><b>Rust</b><span>Learning the language and its approach to memory safety.</span></li>
+        <li><b>Design systems</b><span>Consistent type, color and component rules.</span></li>
+        <li><b>AI-assisted development</b><span>Building faster and learning along the way with Claude.</span></li>
+        <li><b>3D on the web</b><span>Small Three.js and GSAP experiments.</span></li>
+      </ul>
+    </div>
+  </details>
+  <details class="acc" id="timeline" name="acc" open>
+    <summary><h2>Experience</h2></summary>
+    <div class="acc-body">
+      <ol class="timeline">
+        <li class="current"><span class="when">present</span><span class="what"><b><a class="role-link" href="systems.html" title="See my work at DOH">Computer Programmer I, DOH - CHD XII</a></b><br>Two years in the role, building and maintaining the office's internal systems.</span></li>
+        <li><span class="when">2 years ago</span><span class="what"><b>Joined the Department of Health</b></span></li>
+      </ol>
+    </div>
+  </details>
+
+  <aside class="visit" aria-label="Visitor stitch">
+    <p><svg class="spin" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><rect x="4" y="4" width="12" height="12" transform="rotate(45 10 10)"/><rect x="4" y="4" width="12" height="12"/><circle cx="10" cy="10" r="1.6"/></svg><span id="visitText">Visited? Leave a stitch on the towel.</span></p>
+    <span class="thread" aria-hidden="true"></span>
+    <button class="stitch-btn" id="stitchBtn" type="button">I was here</button>
+  </aside>
+
+  <footer class="site-foot">
+    <p>&copy; 2026 krnayo. Koronadal, Philippines.</p>
+    <p aria-live="polite"><span id="count">0</span> visitors so far</p>
+    <p><a href="#top">Back to top</a></p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var pal = { blue: "#1f6b43", accent: "#c33" };
+  function isCorp() { return root.getAttribute("data-style") === "corporate"; }
+  function readColors() {
+    var cs = getComputedStyle(root);
+    pal.blue = cs.getPropertyValue("--blue").trim();
+    pal.accent = cs.getPropertyValue("--accent").trim();
+    pal.line = cs.getPropertyValue("--line").trim();
+  }
+  function mod(n, m) { return ((n % m) + m) % m; }
+
+  document.getElementById("themeBtn").addEventListener("click", function () {
+    var cur = root.getAttribute("data-theme");
+    var isDark = cur === "dark" || (!cur && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    root.setAttribute("data-theme", isDark ? "light" : "dark");
+    readColors(); drawHero(lastT); drawThumbs();
+  });
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () { readColors(); drawHero(lastT); drawThumbs(); });
+
+  var hero = document.getElementById("hero");
+  var cv = document.getElementById("field");
+  var ctx = cv.getContext("2d");
+  var textEl = document.querySelector(".hero-text");
+  var ptr = { x: 0, y: 0, on: false }, ripples = [];
+  var CELL = 8, cols = 0, rows = 0, heat = null, lastT = 0;
+  var visible = true, running = false;
+  var win = { c0: 0, c1: -1, r0: 0, r1: -1 };   /* a window kept clear in the stitching, in cells, sized from .hero-text when that exists */
+
+  /* 13 x 13 rhombus with hooked tips, the old Slavic sign of the field.
+     o outer diamond, i inner diamond, # centre, h hooks on the tips, : corner dots */
+  var T = 13;
+  var ROZH = (function () {
+    var out = [];
+    for (var y = 0; y < T; y++) {
+      var s = "";
+      for (var x = 0; x < T; x++) {
+        var ax = Math.abs(x - 6), ay = Math.abs(y - 6), ch = " ";
+        if (ax + ay === 0) ch = "#";
+        else if (ax + ay === 6) ch = "o";
+        else if (ax + ay === 2) ch = "i";
+        else if ((ax === 6 && ay === 1) || (ax === 1 && ay === 6)) ch = "h";
+        else if (ax === 6 && ay === 6) ch = ":";
+        s += ch;
+      }
+      out.push(s);
+    }
+    return out;
+  })();
+
+  function sizeHero() {
+    var r = cv.getBoundingClientRect();
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cols = Math.ceil(r.width / CELL); rows = Math.ceil(r.height / CELL);
+    heat = new Float32Array(cols * rows);
+    if (textEl) {
+      var t = textEl.getBoundingClientRect(), pad = 20;
+      win.c0 = Math.floor((t.left - r.left - pad) / CELL);
+      win.c1 = Math.ceil((t.right - r.left + pad) / CELL) - 1;
+      win.r0 = Math.floor((t.top - r.top - pad) / CELL);
+      win.r1 = Math.ceil((t.bottom - r.top + pad) / CELL) - 1;
+    }
+    layMarks();
+    drawHero(lastT);
+  }
+  function inWin(c, r) { return c >= win.c0 && c <= win.c1 && r >= win.r0 && r <= win.r1; }
+  /* 0 empty, 1 green, 2 red. Mirrored top and bottom: a rule, a row of teeth, a dotted row, then the rhombi.
+     Around the text window: a green frame, then a ring of red dots. */
+  function tone(c, r, shift) {
+    var mk = marks[c + "," + r];
+    if (mk !== undefined) return mk;
+    if (win.c1 >= win.c0) {
+      if (inWin(c, r)) return 0;
+      var d = Math.max(win.c0 - c, 0, c - win.c1, win.r0 - r, 0, r - win.r1);
+      if (d === 1) return 1;
+      if (d === 2) return mod(c + r, 2) === 0 ? 2 : 0;
+    }
+    var e = Math.min(r, rows - 1 - r);
+    if (e === 0) return 1;
+    if (e >= 2 && e <= 4) { var m = mod(c + shift, 6); return Math.min(m, 5 - m) >= 4 - e ? 2 : 0; }
+    if (e === 6) return mod(c + shift, 2) === 0 ? 1 : 0;
+    if (e < 8) return 0;
+    var ch = ROZH[mod(r - Math.floor(rows / 2) + 6, T)].charAt(mod(c + shift, T));
+    return ch === " " ? 0 : (ch === "o" || ch === "#") ? 2 : 1;
+  }
+  /* Each stitch is an X made of two strokes */
+  function drawHero(t) {
+    lastT = t || 0;
+    ctx.clearRect(0, 0, cols * CELL + CELL, rows * CELL + CELL);
+    var shift = reduce ? 0 : Math.floor(lastT * 0.003);
+    var lists = [[], []];
+    for (var r = 0; r < rows; r++) {
+      for (var c = 0; c < cols; c++) {
+        var i = r * cols + c, hv = heat[i], k = tone(c, r, shift);
+        if (hv > 0) heat[i] = hv > 0.012 ? hv * 0.93 : 0;
+        if (hv > 0.12 && !inWin(c, r)) k = k === 2 ? 1 : k === 1 ? 2 : (hv > 0.3 ? 2 : 0);
+        if (k) lists[k - 1].push(c * CELL, r * CELL);
+      }
+    }
+    if (isCorp()) {   /* corporate: an interactive dot field. Dots swell and drift away from the pointer, a glow follows it, a click sends a ripple. */
+      var W = cols * CELL, H = rows * CELL, T0 = lastT, S = 22;
+      var cx = ptr.on ? ptr.x : W * (0.5 + 0.38 * Math.cos(T0 * 0.0004)), cy = ptr.on ? ptr.y : H * (0.5 + 0.3 * Math.sin(T0 * 0.0006));
+      var glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, 240);
+      glow.addColorStop(0, pal.accent); glow.addColorStop(1, "transparent");
+      ctx.globalAlpha = 0.12; ctx.fillStyle = glow; ctx.fillRect(0, 0, W, H);
+      ripples = ripples.filter(function (rp) { return T0 - rp.t < 1400; });
+      for (var gx = S / 2; gx < W; gx += S) {
+        for (var gy = S / 2; gy < H; gy += S) {
+          var dx = gx - cx, dy = gy - cy, d = Math.sqrt(dx * dx + dy * dy), f = Math.max(0, 1 - d / 150);
+          var size = 1.3 + f * f * 3.2, ox = d > 0.1 ? dx / d * f * 7 : 0, oy = d > 0.1 ? dy / d * f * 7 : 0, boost = 0;
+          for (var q = 0; q < ripples.length; q++) {
+            var rp = ripples[q], age = (T0 - rp.t) / 1400, ddx = gx - rp.x, ddy = gy - rp.y;
+            boost = Math.max(boost, Math.max(0, 1 - Math.abs(Math.sqrt(ddx * ddx + ddy * ddy) - age * 340) / 28) * (1 - age));
+          }
+          size += boost * 3;
+          var a = Math.min(1, f + boost);
+          ctx.fillStyle = a > 0.04 ? pal.accent : pal.line;
+          ctx.globalAlpha = a > 0.04 ? 0.35 + 0.65 * a : 1;
+          ctx.beginPath(); ctx.arc(gx + ox, gy + oy, size, 0, 6.2832); ctx.fill();
+        }
+      }
+      ctx.globalAlpha = 1;
+      return;
+    }
+    ctx.lineWidth = Math.max(1.2, CELL * 0.22);
+    ctx.lineCap = "round";
+    var pad = CELL * 0.18, s = CELL - pad * 2;
+    [pal.blue, pal.accent].forEach(function (color, n) {
+      var list = lists[n];
+      if (!list.length) return;
+      ctx.strokeStyle = color;
+      ctx.beginPath();
+      for (var k = 0; k < list.length; k += 2) {
+        var x = list[k] + pad, y = list[k + 1] + pad;
+        ctx.moveTo(x, y); ctx.lineTo(x + s, y + s);
+        ctx.moveTo(x + s, y); ctx.lineTo(x, y + s);
+      }
+      ctx.stroke();
+    });
+  }
+  function loop(t) {
+    if (!visible) { running = false; return; }
+    drawHero(t);
+    requestAnimationFrame(loop);
+  }
+  function startHero() { if (!running && !reduce) { running = true; requestAnimationFrame(loop); } }
+  function brush(e) {
+    var r = hero.getBoundingClientRect();
+    var px = e.clientX - r.left, py = e.clientY - r.top;
+    ptr.x = px; ptr.y = py; ptr.on = true;
+    var R = 90, d0 = Math.ceil(R / CELL), cc = Math.floor(px / CELL), cr = Math.floor(py / CELL);
+    for (var y = -d0; y <= d0; y++) {
+      for (var x = -d0; x <= d0; x++) {
+        var gx = cc + x, gy = cr + y;
+        if (gx < 0 || gy < 0 || gx >= cols || gy >= rows) continue;
+        var d = Math.sqrt(x * x + y * y) * CELL;
+        if (d > R) continue;
+        var k = gy * cols + gx;
+        heat[k] = Math.min(1, heat[k] + (1 - d / R) * 0.55);
+      }
+    }
+  }
+
+  /* Visitor stitch: one mark per browser, kept in localStorage and re-laid on every resize.
+     COUNTER: set hit and read to URLs that answer with JSON like {"value": 12}. While they are empty the
+     count lives in this browser only. */
+  var COUNTER = { hit: "", read: "" };
+  var MARK_KEY = "krnayo-stitch", COUNT_KEY = "krnayo-count";
+  var MARK = [[0, 0, 2], [1, 0, 2], [-1, 0, 2], [2, 0, 2], [-2, 0, 2], [0, 1, 2], [0, -1, 2], [0, 2, 2], [0, -2, 2], [1, 1, 1], [-1, 1, 1], [1, -1, 1], [-1, -1, 1]];
+  var marks = {};
+  var btn = document.getElementById("stitchBtn"), countEl = document.getElementById("count");
+  function store(key, val) { try { if (val === undefined) return JSON.parse(localStorage.getItem(key)); localStorage.setItem(key, JSON.stringify(val)); } catch (e) { return null; } }
+  function layMarks() {
+    marks = {};
+    var m = store(MARK_KEY);
+    if (!m || !cols) return;
+    var cc = Math.round(m.x * (cols - 1)), cr = Math.round(m.y * (rows - 1));
+    for (var dy = -3; dy <= 3; dy++) for (var dx = -3; dx <= 3; dx++) marks[(cc + dx) + "," + (cr + dy)] = 0;
+    MARK.forEach(function (o) { marks[(cc + o[0]) + "," + (cr + o[1])] = o[2]; });
+  }
+  function pickSpot() {
+    var x, y, cc, cr;
+    for (var n = 0; n < 60; n++) {
+      x = 0.08 + Math.random() * 0.84; y = 0.25 + Math.random() * 0.5;
+      cc = Math.round(x * (cols - 1)); cr = Math.round(y * (rows - 1));
+      if (!(cc >= win.c0 - 5 && cc <= win.c1 + 5 && cr >= win.r0 - 5 && cr <= win.r1 + 5)) break;
+    }
+    return { x: x, y: y };
+  }
+  function ripple(s) {
+    var cc = Math.round(s.x * (cols - 1)), cr = Math.round(s.y * (rows - 1)), R = 9;
+    for (var y = -R; y <= R; y++) for (var x = -R; x <= R; x++) {
+      var gx = cc + x, gy = cr + y, d = Math.sqrt(x * x + y * y);
+      if (gx < 0 || gy < 0 || gx >= cols || gy >= rows || d > R) continue;
+      heat[gy * cols + gx] = Math.min(1, 1.2 - d / R);
+    }
+  }
+  function show(n) { countEl.textContent = Number(n).toLocaleString(); }
+  function fetchCount(url, done) {
+    fetch(url).then(function (r) { return r.json(); }).then(function (d) {
+      var n = d.value !== undefined ? d.value : d.count;
+      if (typeof n === "number") done(n);
+    }).catch(function () {});
+  }
+  function stitched() { btn.disabled = true; btn.textContent = isCorp() ? "Thanks for visiting" : "You stitched here"; }
+  show(store(COUNT_KEY) || 0);
+  if (COUNTER.read) fetchCount(COUNTER.read, show);
+  if (store(MARK_KEY)) stitched();
+  btn.addEventListener("click", function () {
+    if (btn.disabled) return;
+    var s = pickSpot();
+    store(MARK_KEY, s); layMarks(); ripple(s); stitched();
+    var local = (store(COUNT_KEY) || 0) + 1;
+    if (COUNTER.hit) fetchCount(COUNTER.hit, function (n) { store(COUNT_KEY, n); show(n); });
+    else { store(COUNT_KEY, local); show(local); }
+  });
+
+  /* Project thumbnails: small stitched patterns, one per kind */
+  var TCELL = 5;
+  var PATTERNS = {
+    grid: function (x, y) { var a = mod(x + y * 2, 8), b = mod(x - y * 2, 8); return a === 0 && b === 0 ? 2 : (a === 0 || b === 0) ? 1 : 0; },
+    wheat: function (x, y) { var xs = mod(x, 6), m = y % 4; return xs === 2 ? 1 : ((m === 1 || m === 3) && (xs === 1 || xs === 3)) ? 2 : 0; },
+    wave: function (x, y) { var line = Math.round(Math.sin(x * 0.7) * 1.5 + 2); return y % 5 === line ? (Math.floor(y / 5) % 2 ? 2 : 1) : 0; },
+    band: function (x, y) { var m = mod(x, 6); return y === 0 ? 1 : (y >= 2 && y <= 4) ? (Math.min(m, 5 - m) >= 4 - y ? 2 : 0) : y === 6 ? (mod(x, 2) === 0 ? 1 : 0) : 0; },
+    diamond: function (x, y) { var a = mod(x, 6) - 3, b = mod(y, 6) - 3; return Math.abs(a) + Math.abs(b) === 3 ? 2 : (a === 0 && b === 0) ? 1 : 0; },
+    zig: function (x, y) { var m = mod(x, 8); return (y % 4) === Math.min(m, 8 - m) % 4 ? 1 : 0; },
+    check: function (x, y) { var a = mod(x, 4), b = mod(y, 4); return (a === 1 && b === 1) ? 2 : ((a + b) % 2 === 0 && a < 3 && b < 3) ? 1 : 0; }
+  };
+  function drawThumbs() {
+    document.querySelectorAll("canvas[data-kind]").forEach(function (cv2) {
+      var c2 = cv2.getContext("2d"), dpr = Math.min(window.devicePixelRatio || 1, 2), box = cv2.getBoundingClientRect();
+      cv2.width = Math.round(box.width * dpr); cv2.height = Math.round(box.height * dpr);
+      c2.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var fn = PATTERNS[cv2.getAttribute("data-kind")], lists = [[], []];
+      var nx = Math.floor(box.width / TCELL), ny = Math.floor(box.height / TCELL);
+      for (var y = 0; y < ny; y++) for (var x = 0; x < nx; x++) { var k = fn(x, y); if (k) lists[k - 1].push(x * TCELL + 1, y * TCELL + 1); }
+      c2.lineWidth = 1.2; c2.lineCap = "round";
+      [pal.blue, pal.accent].forEach(function (color, i) {
+        c2.strokeStyle = color; c2.beginPath();
+        lists[i].forEach(function (v, j) { if (j % 2) return; var px = v, py = lists[i][j + 1], s = TCELL - 1; c2.moveTo(px, py); c2.lineTo(px + s, py + s); c2.moveTo(px + s, py); c2.lineTo(px, py + s); });
+        c2.stroke();
+      });
+    });
+  }
+
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawThumbs);
+
+  readColors();
+  drawThumbs();
+  sizeHero();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(sizeHero);
+  if (!reduce) {
+    hero.addEventListener("pointermove", brush);
+    hero.addEventListener("pointerleave", function () { ptr.on = false; });
+    hero.addEventListener("pointerdown", function (e) { var r = hero.getBoundingClientRect(); ripples.push({ x: e.clientX - r.left, y: e.clientY - r.top, t: lastT }); });
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (e) { visible = e[0].isIntersecting; if (visible) startHero(); }).observe(hero);
+    }
+    startHero();
+  }
+  window.addEventListener("resize", function () { sizeHero(); drawThumbs(); });
+
+  /* Accordion: a link to a section opens it before jumping there */
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener("click", function () {
+      var d = document.getElementById(a.getAttribute("href").slice(1));
+      if (d && d.tagName === "DETAILS") d.open = true;
+    });
+  });
+  /* Crossing out "fun" switches between the folk design and the corporate one */
+  var funBtn = document.getElementById("funBtn");
+  function applyStyle(corp, save) {
+    if (corp) root.setAttribute("data-style", "corporate"); else root.removeAttribute("data-style");
+    funBtn.setAttribute("aria-pressed", corp ? "true" : "false");
+    document.getElementById("visitText").textContent = corp ? "Visited? Let me know." : "Visited? Leave a stitch on the towel.";
+    if (btn.disabled) btn.textContent = corp ? "Thanks for visiting" : "You stitched here";
+    funBtn.title = corp ? "Bring the fun back" : "Cross it out";
+    try { if (save) localStorage.setItem("krnayo-style", corp ? "corporate" : "folk"); } catch (e) {}
+    readColors(); drawHero(lastT);
+  }
+  funBtn.addEventListener("click", function () { applyStyle(!isCorp(), true); });
+  if (isCorp()) applyStyle(true, false);
+})();
+</script>
+</body>
+</html>
