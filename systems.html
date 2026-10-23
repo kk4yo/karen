@@ -63,18 +63,18 @@ h1 { margin: 0 0 0.6rem; font-family: var(--font-display); font-weight: 400; fon
 html[data-style="corporate"] h1 { font-weight: 600; letter-spacing: -0.01em; color: var(--fg); }
 .lead { margin: 0 0 2rem; color: var(--muted); }
 
-.systems { list-style: none; margin: 0; padding: 0; border-top: 1px dashed var(--line); }
-html[data-style="corporate"] .systems { border-top-color: var(--line); border-top-style: solid; }
-.system { padding-block: 1.2rem; border-bottom: 1px dashed var(--line); }
-html[data-style="corporate"] .system { border-bottom-style: solid; }
-.system .head { display: flex; align-items: baseline; gap: 0.8rem; flex-wrap: wrap; }
-.system .head::before { content: ""; flex: none; align-self: center; width: 0.5rem; height: 0.5rem; border: 1.5px solid var(--accent); transform: rotate(45deg); }
-html[data-style="corporate"] .system .head::before { border-radius: 50%; transform: none; background: var(--accent); border: 0; }
-.system h2 { margin: 0; font-size: 1.05rem; font-weight: 500; }
-.system .meta { margin-left: auto; color: var(--muted); font-size: 0.78rem; text-transform: lowercase; }
-.system p { margin: 0.4rem 0 0 1.3rem; color: var(--muted); }
-
-.back { display: inline-block; margin-top: 2rem; }
+.job { max-width: 72ch; margin: 0; text-align: justify; hyphens: auto; line-height: 1.85; }
+.sys { position: relative; font-weight: 500; text-decoration: underline dotted var(--accent); text-underline-offset: 0.25em; cursor: help; }
+.tip { position: absolute; left: 50%; bottom: calc(100% + 0.55rem); z-index: 5; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.35rem 0.5rem; width: max-content; max-width: min(26rem, 85vw); padding: 0.5rem; background: var(--bg); border: 1px solid var(--accent); opacity: 0; transform: translate(-50%, 4px); pointer-events: none; transition: opacity 0.15s, transform 0.15s; }
+.tool { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.25rem 0.6rem 0.25rem 0.4rem; border: 1px solid var(--line); border-radius: 999px; color: var(--fg); font-size: 0.78rem; font-weight: 400; line-height: 1.2; white-space: nowrap; }
+.tool .ico { width: 1.15rem; height: 1.15rem; flex: none; }
+.sys:hover .tip, .sys:focus-visible .tip { opacity: 1; transform: translate(-50%, 0); }
+html[data-style="corporate"] .tip { position: absolute; left: 50%; bottom: calc(100% + 0.55rem); z-index: 5; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.35rem 0.5rem; width: max-content; max-width: min(26rem, 85vw); padding: 0.5rem; background: var(--bg); border: 1px solid var(--accent); opacity: 0; transform: translate(-50%, 4px); pointer-events: none; transition: opacity 0.15s, transform 0.15s; }
+.tool { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.25rem 0.6rem 0.25rem 0.4rem; border: 1px solid var(--line); border-radius: 999px; color: var(--fg); font-size: 0.78rem; font-weight: 400; line-height: 1.2; white-space: nowrap; }
+.tool .ico { width: 1.15rem; height: 1.15rem; flex: none; }
+@media (prefers-reduced-motion: reduce) { .tip { position: absolute; left: 50%; bottom: calc(100% + 0.55rem); z-index: 5; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.35rem 0.5rem; width: max-content; max-width: min(26rem, 85vw); padding: 0.5rem; background: var(--bg); border: 1px solid var(--accent); opacity: 0; transform: translate(-50%, 4px); pointer-events: none; transition: opacity 0.15s, transform 0.15s; }
+.tool { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.25rem 0.6rem 0.25rem 0.4rem; border: 1px solid var(--line); border-radius: 999px; color: var(--fg); font-size: 0.78rem; font-weight: 400; line-height: 1.2; white-space: nowrap; }
+.tool .ico { width: 1.15rem; height: 1.15rem; flex: none; }
 </style>
 </head>
 <body>
@@ -89,41 +89,7 @@ html[data-style="corporate"] .system .head::before { border-radius: 50%; transfo
     <h1>My work at DOH</h1>
     <p class="lead">What I do at the Department of Health: building and maintaining systems, giving technical assistance and teaching.</p>
 
-    <ul class="systems">
-      <li class="system">
-        <div class="head"><h2>e-Lisensiya</h2><span class="meta">Laravel, Vue, Sanctum, SQL Server</span></div>
-        <p>An e-licensing system for DOH-RO XII. A Vue front end talks to a Laravel 12 API, with Sanctum for authentication and SQL Server for storage.</p>
-      </li>
-      <li class="system">
-        <div class="head"><h2>PTS</h2><span class="meta">Laravel</span></div>
-        <p>A maternal health referral and patient tracking system for DOH CHD XII, including postnatal care records. Most of the work sits in the backend: schema design and security.</p>
-      </li>
-      <li class="system">
-        <div class="head"><h2>Supply Inventory v2</h2><span class="meta">ASP.NET Web Forms, C#</span></div>
-        <p>A web app for tracking office supplies, maintained and extended as an ASP.NET Web Forms application.</p>
-      </li>
-      <li class="system">
-        <div class="head"><h2>Procurement system</h2><span class="meta">PHP, PHPMaker, TCPDF</span></div>
-        <p>A PHP system that turns Purchase Requests and Abstracts of Quotation into print-ready PDF forms.</p>
-      </li>
-      <li class="system">
-        <div class="head"><h2>Human resource management system</h2></div>
-        <p>A system for managing the office's human resource records.</p>
-      </li>
-      <li class="system">
-        <div class="head"><h2>System maintenance</h2></div>
-        <p>Ongoing upkeep of the office's internal systems: updates, fixes and extensions.</p>
-      </li>
-      <li class="system">
-        <div class="head"><h2>Technical assistance</h2></div>
-        <p>Helping users of the systems with technical questions and problems.</p>
-      </li>
-      <li class="system">
-        <div class="head"><h2>Resource speaker, EMR training</h2></div>
-        <p>Teaching the electronic medical record (EMR) system as a resource speaker.</p>
-      </li>
-    </ul>
-
+    <p class="job">I build and maintain the internal systems of the Department of Health. <span class="sys" tabindex="0" aria-label="e-Lisensiya, built with Laravel, Vue, Sanctum, SQL Server">e-Lisensiya<span class="tip" aria-hidden="true"><span class="tool"><img class="ico" src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/laravel/laravel-original.svg" alt="" width="22" height="22" loading="lazy">Laravel</span><span class="tool"><img class="ico" src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/vuejs/vuejs-original.svg" alt="" width="22" height="22" loading="lazy">Vue</span><span class="tool"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 12l2.5 2.5 4.5-5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>Sanctum</span><span class="tool"><img class="ico" src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" alt="" width="22" height="22" loading="lazy">SQL Server</span></span></span> is an e-licensing system for DOH-RO XII, with a Vue front end, a Laravel API, Sanctum for authentication and SQL Server for storage. <span class="sys" tabindex="0" aria-label="PTS, built with Laravel">PTS<span class="tip" aria-hidden="true"><span class="tool"><img class="ico" src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/laravel/laravel-original.svg" alt="" width="22" height="22" loading="lazy">Laravel</span></span></span> is a maternal health referral and patient tracking system for DOH CHD XII that includes postnatal care records, where most of my work is backend: schema design and security. <span class="sys" tabindex="0" aria-label="Supply Inventory v2, built with ASP.NET Web Forms, C#">Supply Inventory v2<span class="tip" aria-hidden="true"><span class="tool"><img class="ico" src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/dot-net/dot-net-original.svg" alt="" width="22" height="22" loading="lazy">ASP.NET Web Forms</span><span class="tool"><img class="ico" src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/csharp/csharp-original.svg" alt="" width="22" height="22" loading="lazy">C#</span></span></span> tracks office supplies and runs on ASP.NET Web Forms, which I maintain and extend. The <span class="sys" tabindex="0" aria-label="Procurement system, built with PHP, PHPMaker, TCPDF">Procurement system<span class="tip" aria-hidden="true"><span class="tool"><img class="ico" src="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons/php/php-original.svg" alt="" width="22" height="22" loading="lazy">PHP</span><span class="tool"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/><text x="12" y="16" text-anchor="middle" font-size="9" font-weight="600" fill="currentColor" font-family="monospace">PM</text></svg>PHPMaker</span><span class="tool"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l4 4v16H6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 2v4h4M9 13h6M9 17h6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>TCPDF</span></span></span> is built in PHP and turns Purchase Requests and Abstracts of Quotation into print-ready PDF forms, and I also work on a <b>Human resource management system</b> for the office's human resource records. Beyond building, I keep these systems running through ongoing maintenance, give technical assistance to their users, and serve as a resource speaker teaching the EMR system.</p>
     <a class="back" href="index.html#timeline">&larr; Back to the portfolio</a>
   </main>
 </div>
